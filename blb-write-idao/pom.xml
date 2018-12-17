@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.blb</groupId>
+    <artifactId>blb-write-parent</artifactId>
+    <version>master</version>
+    <relativePath>../blb-write-parent/pom.xml</relativePath>
+  </parent>
+  <groupId>com.blb</groupId>
+  <artifactId>blb-write-idao</artifactId>
+  <version>${blb-write-version}</version>
+  <name>blb-write-idao</name>
+  
+  <dependencies>
+  	<dependency>
+  	<groupId>com.blb</groupId>
+      <artifactId>blb-write-model</artifactId>
+      <version>${blb-write-version}</version>
+  	</dependency>
+  </dependencies>
+</project>

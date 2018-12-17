@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blb.write.mapper.IBlogArticleMapper">
+	
+	<resultMap type="com.blb.write.model.BlogArticle" id="blogArticleMap">
+		<id property="id" column="id" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="editTime" column="editTime" />
+		<result property="createUser" column="createUser" />
+		<result property="editUser" column="editUser" />
+		<result property="resourceID" column="resourceID" />
+		<result property="isDelete" column="isDelete" />
+		
+		<result property="title" column="title" />
+		<result property="md_content" column="md_content" />
+		<result property="ht_content" column="ht_content" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.blb.write.model.BlogArticle">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT @@IDENTITY AS id
+		</selectKey>
+		insert into
+		BlogArticle(version,isdelete,createTime,editTime,createUser,editUser,resourceID,
+		title,md_content,ht_content)
+		values(0,0,#{createTime},#{editTime},#{createUser},#{editUser},#{resourceID},
+		#{title},#{md_content},#{ht_content})
+	</insert>
+	<insert id="insertBatch" parameterType="arrayList"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		BlogArticle(version,isdelete,createTime,editTime,createUser,editUser,resourceID,
+		title,md_content,ht_content)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			select
+			0,0,#{item.createTime},#{item.editTime},#{item.createUser},#{item.editUser},#{item.resourceID},
+			#{item.title},#{item.md_content},#{item.ht_content}
+			from dual
+		</foreach>
+	</insert>
+	<update id="update" parameterType="com.blb.write.model.BlogArticle">
+		update BlogArticle
+		<set>
+			<if test="createTime != null">createTime=#{createTime},</if>
+			<if test="editTime != null">editTime=#{editTime},</if>
+			<if test="createUser != null">createUser=#{createUser},</if>
+			<if test="editUser != null">editUser=#{editUser},</if>
+			<if test="resourceID != null">resourceID=#{resourceID},</if>
+			
+			<if test="title != null">title=#{title},</if>
+			<if test="md_content != null">md_content=#{md_content},</if>
+			<if test="ht_content != null">ht_content=#{ht_content},</if>
+		</set>
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+		</where>
+	</update>
+	<update id="updateBatch" parameterType="com.blb.write.model.BlogArticle">
+		<foreach collection="list" item="item" separator=";">
+			update BlogArticle
+			<set>
+				<if test="item.createTime != null">createTime=#{item.createTime},</if>
+				<if test="item.editTime != null">editTime=#{item.editTime},</if>
+				<if test="item.createUser != null">createUser=#{item.createUser},</if>
+				<if test="item.editUser != null">editUser=#{item.editUser},</if>
+				<if test="item.resourceID != null">resourceID=#{item.resourceID},</if>
+				
+				<if test="item.title != null">title=#{item.title},</if>
+				<if test="item.md_content != null">md_content=#{item.md_content},</if>
+				<if test="item.ht_content != null">ht_content=#{item.ht_content},</if>
+			</set>
+			<where>
+				<if test="item.id != null">
+					id = #{item.id}
+				</if>
+			</where>
+		</foreach>
+	</update>
+	<delete id="delete" parameterType="com.blb.write.model.BlogArticle">
+		update set isdelete = 1 from BlogArticle where
+		id = #{id}
+	</delete>
+	<delete id="deleteById" >
+		update set isdelete = 1 from BlogArticle where
+		id = #{id}
+	</delete>
+	<delete id="deleteBatch">
+		update set isdelete = 1 from BlogArticle where id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="item" separator=",">
+				#{item.id}
+			</foreach>
+		</trim>
+	</delete>
+	<delete id="deleteBatchById">
+		update set isdelete = 1 from BlogArticle where id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="item" separator=",">
+				#{item.id}
+			</foreach>
+		</trim>
+	</delete>
+	<select id="findByResourceID" parameterType="java.lang.String" resultMap="blogArticleMap">
+		select * from BlogArticle
+		<where>
+			resourceID = #{arg0}
+		</where>
+	</select>
+	<select id="findByResourceIDIn" resultMap="blogArticleMap">
+		select * from BlogArticle where resourceID in
+		<foreach collection="list" item="resourceID" open="(" close=")"
+			separator=",">
+			#{resourceID}
+		</foreach>
+	</select>
+	<select id="count" resultType="long">
+		select count(*) from BlogArticle
+	</select>
+	<select id="findOne" parameterType="java.lang.Integer" resultMap="blogArticleMap">
+		select * from BlogArticle
+		<where>
+			id = #{arg0}
+		</where>
+	</select>
+	<select id="findByIdList" resultMap="blogArticleMap">
+		select * from BlogArticle where id in
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</select>
+	<select id="findAll" resultMap="blogArticleMap">
+		select * from BlogArticle
+	</select>
+ </mapper>
