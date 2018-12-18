@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="blb-exhibition-web">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="blb-exhibition-controller-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-controller/blb-exhibition-controller">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-exhibition-serviceimpl-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-serviceimpl/blb-exhibition-serviceimpl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-exhibition-iservice-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-iservice/blb-exhibition-iservice">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-exhibition-model-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-model/blb-exhibition-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-exhibition-daoimpl-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-daoimpl/blb-exhibition-daoimpl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-exhibition-idao-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-idao/blb-exhibition-idao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-exhibition-util-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-exhibition-util/blb-exhibition-util">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-base-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-base/blb-base">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="blb-exhibition-web"/>
+        <property name="java-output-path" value="/blb-exhibition-web/target/classes"/>
+    </wb-module>
+</project-modules>
