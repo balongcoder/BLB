@@ -13,6 +13,7 @@
 		<blb-exhibition-version>master</blb-exhibition-version>
 		<junit-version>3.8.1</junit-version>
 		<blb-base.version>master</blb-base.version>
+		<blb-write.version>master</blb-write.version>
 		<mybatis-spring-boot-starter.version>1.3.1</mybatis-spring-boot-starter.version>
 	</properties>
 
@@ -27,6 +28,18 @@
 			<artifactId>blb-base</artifactId>
 			<version>${blb-base.version}</version>
 		</dependency>
+		
+		<dependency>
+      <groupId>com.blb</groupId>
+      <artifactId>blb-write-iservice</artifactId>
+      <version>${blb-write.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.blb</groupId>
+      <artifactId>blb-write-serviceimpl</artifactId>
+      <version>${blb-write.version}</version>
+    </dependency>
+    
 		<dependency>
     <groupId>org.mybatis.spring.boot</groupId>
     <artifactId>mybatis-spring-boot-starter</artifactId>

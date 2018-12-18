@@ -22,6 +22,18 @@
       <artifactId>blb-exhibition-daoimpl</artifactId>
       <version>${blb-exhibition-version}</version>
   </dependency>
+  
+  <dependency>
+      <groupId>com.blb</groupId>
+      <artifactId>blb-write-iservice</artifactId>
+      <version>${blb-write.version}</version>
+  </dependency>
+  <dependency>
+      <groupId>com.blb</groupId>
+      <artifactId>blb-write-serviceimpl</artifactId>
+      <version>${blb-write.version}</version>
+  </dependency>
+  
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
