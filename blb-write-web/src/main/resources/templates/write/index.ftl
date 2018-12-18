@@ -92,6 +92,7 @@
 				//dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
 				imageUpload : true,
 				imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+				imageUploadURL : "${basePath}/writeController/upload/editormdPic/",//注意你后端的上传图片服务地址
 				onload : function() {
 				},
 				onSave : function() {
