@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.blb</groupId>
+	<artifactId>blb-file-service-web</artifactId>
+	<packaging>war</packaging>
+	<version>master</version>
+	<name>blb-file-service-web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+	</parent>
+
+  <properties>
+    <junit-version>3.8.1</junit-version>
+    <blb-base.version>master</blb-base.version>
+    <fastjson.version>1.2.4</fastjson.version>
+  </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+        <groupId>com.blb</groupId>
+        <artifactId>blb-base</artifactId>
+        <version>${blb-base.version}</version>
+    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
+				<artifactId>spring-boot-starter-logging</artifactId> </exclusion> </exclusions> -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- <exclusions> <exclusion> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId> 
+				</exclusion> </exclusions> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+	    <groupId>servlets.com</groupId>
+	    <artifactId>cos</artifactId>
+	    <version>05Nov2002</version>
+	</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<!-- <executions> <execution> <goals> <goal>repackage</goal> </goals> 
+					</execution> </executions> -->
+			</plugin>
+		</plugins>
+		<finalName>blb-file-service-web</finalName>
+	</build>
+</project>

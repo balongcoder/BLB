@@ -1,0 +1,8 @@
+server:
+  context-path: /fileservice
+  port: 8803
+  compression:
+     mime-types: application/x-font-woff,application/x-font-woff2,application/x-font-truetype,image/svg+xml,application/x-font-opentype,application/vnd.ms-fontobject
+ 
+
+    

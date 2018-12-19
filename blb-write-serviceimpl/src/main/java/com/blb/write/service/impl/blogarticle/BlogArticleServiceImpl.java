@@ -15,11 +15,18 @@ public class BlogArticleServiceImpl extends BaseServiceImpl<BlogArticle> impleme
 
 
 	@Autowired
-	private IBlogArticleDao writeDao;
+	private IBlogArticleDao iBlogArticleDao;
 	
 	@PostConstruct
 	private void postConstruct(){
-		baseIdo = writeDao;
+		baseIdo = iBlogArticleDao;
+	}
+
+	@Override
+	public String createRid() {
+		BlogArticle blogArticle = new BlogArticle();
+		this.createRid(blogArticle);
+		return blogArticle.getResourceID();
 	}
 
 }

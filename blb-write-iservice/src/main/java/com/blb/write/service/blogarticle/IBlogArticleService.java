@@ -5,4 +5,5 @@ import com.blb.write.model.BlogArticle;
 
 public interface IBlogArticleService extends IBaseService<BlogArticle> {
 
+	String createRid();
 }

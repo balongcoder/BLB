@@ -3,18 +3,18 @@ package com.blb.base.util;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IRsultTemplate {
+public class IResultTemplate {
 	
 	//×´Ì¬
 	public final static String STATUS = "status";
-	// ³É¹¦
+	// ï¿½É¹ï¿½
 	public final static String STATUS_SUCCESS = "success";
-	// Ê§°Ü
+	// Ê§ï¿½ï¿½
 	public final static String STATUS_FAIL = "fail";
-	//´íÎó
+	//ï¿½ï¿½ï¿½ï¿½
 	public final static String STATUS_ERROR = "error";
 	
-	//ÏûÏ¢
+	//ï¿½ï¿½Ï¢
     public final static String MESSAGE = "message";
 
 	
@@ -52,5 +52,32 @@ public class IRsultTemplate {
 		retMap.put(STATUS, STATUS_ERROR); 
 		retMap.put(MESSAGE, msg); 
 		return retMap;
+	}
+	
+	public static boolean isSuccess(Map<String, Object> ret){
+		Object status = ret.get(STATUS);
+		if(null == status) {
+			return false;
+		}
+		
+		return STATUS_SUCCESS.equals(status.toString());
+	}
+	
+	public static boolean isError(Map<String, Object> ret){
+		Object status = ret.get(STATUS);
+		if(null == status) {
+			return false;
+		}
+		
+		return STATUS_ERROR.equals(status.toString());
+	}
+	
+	public static boolean isFail(Map<String, Object> ret){
+		Object status = ret.get(STATUS);
+		if(null == status) {
+			return false;
+		}
+		
+		return STATUS_FAIL.equals(status.toString());
 	}
 }

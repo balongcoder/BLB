@@ -26,6 +26,7 @@
     <body>
         <form role="form">
         	<div class="form-group">
+        	<input type="text" id="blogArticleRid" name="blogArticleRid" value="${blogArticleRid}" hidden/>
    				<div class="col-sm-10">
 	   				<input type="text" class="form-control " id="title" name="title" placeholder="请输入标题"/>
    				</div>
@@ -92,7 +93,7 @@
 				//dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
 				imageUpload : true,
 				imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-				imageUploadURL : "${basePath}/writeController/upload/editormdPic/",//注意你后端的上传图片服务地址
+				imageUploadURL : "${basePath}/writeController/upload/editormdPic?blogArticleRid=" + $("#blogArticleRid").val(),//注意你后端的上传图片服务地址
 				onload : function() {
 				},
 				onSave : function() {
@@ -102,7 +103,8 @@
 		                   data: {
 		                       md_content: testEditor.getMarkdown(),
 		                       ht_content: testEditor.getHTML(),
-		                       title:$('#title').val()
+		                       title:$('#title').val(),
+		                       rid:$("#blogArticleRid").val()
 		
 		                   },
 		                   contentType: "application/x-www-form-urlencoded; charset=utf-8",

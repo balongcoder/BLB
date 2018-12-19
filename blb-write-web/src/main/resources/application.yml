@@ -1,6 +1,6 @@
 server:
   context-path: /write
-  port: 8080
+  port: 8800
   compression:
      mime-types: application/x-font-woff,application/x-font-woff2,application/x-font-truetype,image/svg+xml,application/x-font-opentype,application/vnd.ms-fontobject
   

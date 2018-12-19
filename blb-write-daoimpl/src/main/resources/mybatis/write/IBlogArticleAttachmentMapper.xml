@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blb.write.mapper.IBlogArticleAttachmentMapper">
+	
+	<resultMap type="com.blb.write.model.BlogArticleAttachment" id="BlogArticleAttachmentMap">
+		<id property="id" column="id" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="editTime" column="editTime" />
+		<result property="createUser" column="createUser" />
+		<result property="editUser" column="editUser" />
+		<result property="resourceID" column="resourceID" />
+		<result property="isDelete" column="isDelete" />
+		
+		<result property="attName" column="attName" />
+		<result property="blogArticleRid" column="blogArticleRid" />
+		<result property="status" column="status" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.blb.write.model.BlogArticleAttachment">
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT @@IDENTITY AS id
+		</selectKey>
+		insert into
+		BlogArticleAttachment(version,isdelete,createTime,editTime,createUser,editUser,resourceID,
+		attName,blogArticleRid,status)
+		values(0,0,#{createTime},#{editTime},#{createUser},#{editUser},#{resourceID},
+		#{attName},#{blogArticleRid},#{status})
+	</insert>
+	<insert id="insertBatch" parameterType="arrayList"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		BlogArticleAttachment(version,isdelete,createTime,editTime,createUser,editUser,resourceID,
+		attName,blogArticleRid,status)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			select
+			0,0,#{item.createTime},#{item.editTime},#{item.createUser},#{item.editUser},#{item.resourceID},
+			#{item.attName},#{item.blogArticleRid},#{item.status}
+			from dual
+		</foreach>
+	</insert>
+	<update id="update" parameterType="com.blb.write.model.BlogArticleAttachment">
+		update BlogArticleAttachment
+		<set>
+			<if test="createTime != null">createTime=#{createTime},</if>
+			<if test="editTime != null">editTime=#{editTime},</if>
+			<if test="createUser != null">createUser=#{createUser},</if>
+			<if test="editUser != null">editUser=#{editUser},</if>
+			<if test="resourceID != null">resourceID=#{resourceID},</if>
+			
+			<if test="attName != null">attName=#{attName},</if>
+			<if test="blogArticleRid != null">blogArticleRid=#{blogArticleRid},</if>
+			<if test="status != null">status=#{status},</if>
+		</set>
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+		</where>
+	</update>
+	<update id="updateBatch" parameterType="com.blb.write.model.BlogArticleAttachment">
+		<foreach collection="list" item="item" separator=";">
+			update BlogArticleAttachment
+			<set>
+				<if test="item.createTime != null">createTime=#{item.createTime},</if>
+				<if test="item.editTime != null">editTime=#{item.editTime},</if>
+				<if test="item.createUser != null">createUser=#{item.createUser},</if>
+				<if test="item.editUser != null">editUser=#{item.editUser},</if>
+				<if test="item.resourceID != null">resourceID=#{item.resourceID},</if>
+				
+				<if test="item.attName != null">attName=#{item.attName},</if>
+				<if test="item.blogArticleRid != null">blogArticleRid=#{item.blogArticleRid},</if>
+				<if test="item.status != null">status=#{item.status},</if>
+			</set>
+			<where>
+				<if test="item.id != null">
+					id = #{item.id}
+				</if>
+			</where>
+		</foreach>
+	</update>
+	<delete id="delete" parameterType="com.blb.write.model.BlogArticleAttachment">
+		update set isdelete = 1 from BlogArticleAttachment where
+		id = #{id}
+	</delete>
+	<delete id="deleteById" >
+		update set isdelete = 1 from BlogArticleAttachment where
+		id = #{id}
+	</delete>
+	<delete id="deleteBatch">
+		update set isdelete = 1 from BlogArticleAttachment where id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="item" separator=",">
+				#{item.id}
+			</foreach>
+		</trim>
+	</delete>
+	<delete id="deleteBatchById">
+		update set isdelete = 1 from BlogArticleAttachment where id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="item" separator=",">
+				#{item.id}
+			</foreach>
+		</trim>
+	</delete>
+	<select id="findByResourceID" parameterType="java.lang.String" resultMap="BlogArticleAttachmentMap">
+		select * from BlogArticleAttachment
+		<where>
+			resourceID = #{arg0}
+		</where>
+	</select>
+	<select id="findByResourceIDIn" resultMap="BlogArticleAttachmentMap">
+		select * from BlogArticleAttachment where resourceID in
+		<foreach collection="list" item="resourceID" open="(" close=")"
+			separator=",">
+			#{resourceID}
+		</foreach>
+	</select>
+	<select id="count" resultType="long">
+		select count(*) from BlogArticleAttachment
+	</select>
+	<select id="findOne" parameterType="java.lang.Integer" resultMap="BlogArticleAttachmentMap">
+		select * from BlogArticleAttachment
+		<where>
+			id = #{arg0}
+		</where>
+	</select>
+	<select id="findByIdList" resultMap="BlogArticleAttachmentMap">
+		select * from BlogArticleAttachment where id in
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</select>
+	<select id="findAll" resultMap="BlogArticleAttachmentMap">
+		select * from BlogArticleAttachment
+	</select>
+ </mapper>

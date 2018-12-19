@@ -15,6 +15,7 @@
         <script src="${basePath}/js/plugins/bootstrap/js/bootstrap-treeview.js"></script>
     </head>
     <body>
+      <input type="text" id="blogArticleRid" name="blogArticleRid" value="${blogArticleRid}" hidden/>
       <div class="row">
 	      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
           <div id="articleTree">
@@ -73,6 +74,7 @@
                 type : 'POST',  
                 url : '${basePath}/getArticle',
                 data:{
+                	blogArticleRid:$("#blogArticleRid").val()
                 },
                 
 					success : function(data) {

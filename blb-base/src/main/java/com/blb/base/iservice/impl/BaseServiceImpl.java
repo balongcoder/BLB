@@ -438,8 +438,8 @@ public class BaseServiceImpl <T extends ABaseModel> implements IBaseService<T> {
 			randomId = randomId.substring(2, 11);
 		else
 			randomId = randomId.substring(2);
-		String resourceID = tmpID + "." + model.getClass().getSimpleName() + "."
-				+ DateUtil.getDateStr(new Date(), "yyyyMMddHHmmssSSS") + "." + randomId;
+		String resourceID = model.getClass().getSimpleName()
+				+ DateUtil.getDateStr(new Date(), "yyyyMMddHHmmssSSS") + randomId;
 		model.setResourceID(resourceID);
 			String dateStr =  DateUtil.getDateStr(new Date(), "yyyy-MM-dd HHmmssSSS");
 		Date date = DateUtil.getDate(dateStr, "yyyy-MM-dd HHmmssSSS");

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.blb.base.util.IRsultTemplate;
+import com.blb.base.util.IResultTemplate;
 import com.blb.exhibition.service.IExhibitionService;
 import com.blb.write.model.BlogArticle;
 import com.blb.write.service.blogarticle.IBlogArticleService;
@@ -34,7 +34,7 @@ public class ExhibitionServiceImpl implements IExhibitionService {
 		Map<String, Object> retMap = new HashMap<>();
 		BlogArticle blogArticle = iBlogArticleService.findByResourceID(bArticleRid);
 		retMap.put("content", blogArticle.getHt_content());
-		return IRsultTemplate.success("获取成功", retMap);
+		return IResultTemplate.success("获取成功", retMap);
 	}
 
 }

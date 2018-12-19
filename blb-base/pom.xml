@@ -8,11 +8,11 @@
   <properties>
     <persistence-api.version>1.0.2</persistence-api.version>
     <jackson-core-asl.version>1.9.13</jackson-core-asl.version>
-	<jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
-	<spring-data-commons.version>1.13.9.RELEASE</spring-data-commons.version>
-	<spring-boot-starter.version>1.5.9.RELEASE</spring-boot-starter.version>
-	<commons-net.version>3.3</commons-net.version>
-	<mybatis-spring-boot-starter.version>1.3.1</mybatis-spring-boot-starter.version>
+		<jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
+		<spring-data-commons.version>1.13.9.RELEASE</spring-data-commons.version>
+		<spring-boot-starter.version>1.5.9.RELEASE</spring-boot-starter.version>
+		<commons-net.version>3.3</commons-net.version>
+		<mybatis-spring-boot-starter.version>1.3.1</mybatis-spring-boot-starter.version>
   </properties>
   <dependencies>
     <dependency>
