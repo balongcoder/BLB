@@ -1,23 +1,23 @@
 server:
-  context-path: /home
+#  context-path: /blb
   port: 8801
   
 spring:
   freemarker:
-    suffix: .ftl
+    suffix: .html
     enableed: true
     template-loader-path: classpath:/templates/
     charset: UTF-8
     request-context-attribute: request
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/blb
+    url: jdbc:mysql://127.0.0.1:3306/blb?useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-#mybatis:
-#  mapper-locations: classpath:mybatis/**/*.xml
-#  type-aliases-pakage: com.blb.**.mapper
+  mybatis:
+   mapper-locations: classpath:mybatis/**/*.xml
+   type-aliases-pakage: com.blb.**.mapper
 
 pagehelper:
   helperDialect: mysql

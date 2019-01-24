@@ -80,7 +80,6 @@ public class FileServiceController {
 	public void getfile(@PathVariable("fileEncode") String fileEncode, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String fileName = configProperties.getFileSystemPath() + File.separator  + EnAndDeCodeUtil.decode(fileEncode);
-		System.out.println(fileName);
 		
 		FileInputStream fis = null;
 		OutputStream os = null;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="blb-write-api">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="blb-write-serviceimpl-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-write-serviceimpl/blb-write-serviceimpl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-write-iservice-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-write-iservice/blb-write-iservice">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-write-model-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-write-model/blb-write-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-write-daoimpl-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-write-daoimpl/blb-write-daoimpl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-write-idao-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-write-idao/blb-write-idao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-write-util-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-write-util/blb-write-util">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blb-base-master.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blb-base/blb-base">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/blb-write-api/target/classes"/>
+        <property name="context-root" value="blb-write-api"/>
+    </wb-module>
+</project-modules>

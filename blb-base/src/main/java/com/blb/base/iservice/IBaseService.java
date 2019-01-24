@@ -10,6 +10,12 @@ import com.blb.base.model.ABaseModel;
 import com.blb.base.model.UserVo;
 
 public interface IBaseService<T extends ABaseModel> {
+	
+	/**
+	 * 创建业务主键
+	 * @return 返回业务主键
+	 */
+	public String createRid();
 	/**
 	 * 根据业务主键查询
 	 * @param resourceID 业务主键
@@ -99,4 +105,5 @@ public interface IBaseService<T extends ABaseModel> {
 	 * @param user 操作人
 	 */
 	public void preDeleteInBatch(List<T> modelList,UserVo user);
+	
 }

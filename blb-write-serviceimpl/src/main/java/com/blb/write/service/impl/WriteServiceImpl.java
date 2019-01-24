@@ -35,7 +35,7 @@ public class WriteServiceImpl implements IWriteService {
 	
 	/**
 	 * 
-	 * @Title: saveBlogArticle
+	 * @Title: saveOrUpdateBlogArticle
 	 * @Description: 保存博客
 	 * @param rid
 	 * @param title
@@ -46,15 +46,26 @@ public class WriteServiceImpl implements IWriteService {
 	 * @date 2018年12月15日 下午4:45:07
 	 */
 	@Override
-	public Map<String, Object> saveBlogArticle(String rid, String title, String md_content, String ht_content, UserVo userVo) {
-
-		BlogArticle blogArticle = new BlogArticle();
+	public Map<String, Object> saveOrUpdateBlogArticle(String rid, String title, String md_content, String ht_content, UserVo userVo) {
+		
+		BlogArticle blogArticle = blogArticleService.findByResourceID(rid);
+		
+		boolean saveOrUpdate = true;
+		
+		if(null == blogArticle) {			
+			blogArticle = new BlogArticle();
+			saveOrUpdate = false;
+		}
 		blogArticle.setResourceID(rid);
 		blogArticle.setTitle(title);
 		blogArticle.setMd_content(md_content);
 		blogArticle.setHt_content(ht_content);
 		
-		blogArticleService.save(blogArticle, userVo);
+		if(!saveOrUpdate) {
+			blogArticleService.save(blogArticle, userVo);
+		} else {
+			blogArticleService.update(blogArticle, userVo);
+		}
 		
 		return IResultTemplate.success("保存成功");
 	}

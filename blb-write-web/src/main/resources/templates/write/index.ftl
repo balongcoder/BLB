@@ -121,5 +121,8 @@
 			});
 		
 		});
+		$('#release').on('click', function(){
+			console.log($('#my-editormd > .editormd-preview').html());
+		});
      </script>
 </html>
