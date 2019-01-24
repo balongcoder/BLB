@@ -1,0 +1,30 @@
+server:
+#  context-path: /exhibition
+  port: 8802
+  compression:
+     mime-types: application/x-font-woff,application/x-font-woff2,application/x-font-truetype,image/svg+xml,application/x-font-opentype,application/vnd.ms-fontobject
+  
+spring:
+  freemarker:
+    suffix: .ftl
+    enableed: true
+    template-loader-path: classpath:/templates/
+    charset: UTF-8
+    request-context-attribute: request
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/blb?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath:mybatis/**/*.xml
+  type-aliases-pakage: com.blb.**.mapper
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+ 
+    

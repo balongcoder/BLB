@@ -5,20 +5,17 @@ import java.util.Map;
 
 public class IResultTemplate {
 	
-	//״̬
+	// 状态
 	public final static String STATUS = "status";
-	// �ɹ�
+	// 成功
 	public final static String STATUS_SUCCESS = "success";
-	// ʧ��
+	// 失败
 	public final static String STATUS_FAIL = "fail";
-	//����
+	// 错误
 	public final static String STATUS_ERROR = "error";
-	
-	//��Ϣ
+	// 消息
     public final static String MESSAGE = "message";
 
-	
-	
 	public static Map<String, Object> success(){
 		Map<String, Object> retMap = new HashMap<>();
 		retMap.put(STATUS, STATUS_SUCCESS); 

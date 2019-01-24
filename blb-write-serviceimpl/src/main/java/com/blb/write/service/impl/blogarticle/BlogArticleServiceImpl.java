@@ -22,11 +22,4 @@ public class BlogArticleServiceImpl extends BaseServiceImpl<BlogArticle> impleme
 		baseIdo = iBlogArticleDao;
 	}
 
-	@Override
-	public String createRid() {
-		BlogArticle blogArticle = new BlogArticle();
-		this.createRid(blogArticle);
-		return blogArticle.getResourceID();
-	}
-
 }

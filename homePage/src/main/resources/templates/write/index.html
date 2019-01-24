@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>写博客</title>
+<link rel="stylesheet"
+	href="${basePath}/css/plugins/markdown/css/style.css" />
+<link rel="stylesheet"
+	href="${basePath}/css/plugins/markdown/css/editormd.css" />
+<link rel="stylesheet"
+	href="${basePath}/css/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet"
+  href="${basePath}/vue/component/write/write.css" />
+
+<script src="${basePath}/js/jquery-3.3.1.js"></script>
+<script src="${basePath}/js/plugins/markdown/js/editormd.js"></script>
+<script src="${basePath}/js/plugins/bootstrap/js/bootstrap.js"></script>
+<script src="${basePath}/vue/vue-resource.js"></script>
+<script src="${basePath}/vue/vue.js"></script>
+<style>
+#submit_button {
+	display: block;
+	margin-left: 42%;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.input {
+	display: block;
+	margin-left: 20%;
+}
+</style>
+</head>
+<body>
+	<!--Header_section-->
+<!-- 	<header id="header_wrapper">
+		<div id="main_menu">
+     <main_menu_comp :menu="menu"></main_menu_comp>
+    </div>
+	</header> -->
+	<header id="header_wrapper">
+	<nav class="navbar navbar-default">
+    <div id="1"  style="clear:both;">
+	    <div id="main_menu_title">
+	      <div class="navbar-header">
+			    <p>
+			    <span style="vertical-align: middle;">
+			    <img src="http://127.0.0.1:8801/imgs/logo_32.ico" class="menu_logo_img">
+			    <font size="6" color="#87CEFA" style="width: auto;">BLB blog</font>
+			    </span>
+			    </p>
+		    </div>
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;">
+			    <div><span>巴海龙</span></div>
+	      </div>
+	      <div onclick="window.scroll(0,0);" class="back-to-top"><i class="fa fa-arrow-up"></i></div>
+	    </div>
+    </div>
+   </nav>
+  </header>
+  <div>
+		<form role="form">
+			<div class="form-group">
+				<input type="text" id="blogArticleRid" name="blogArticleRid"
+					value="${blogArticleRid}" hidden />
+				<div class="col-sm-10">
+					<input type="text" class="form-control " id="title" name="title"
+						placeholder="请输入标题" />
+				</div>
+				<div class="col-sm-2">
+					<input type="button" class="form-control btn btn-primary"
+						id="release" name="release" value="发布文章" placeholder="发布文章" data-toggle="modal" data-target="#releaseModal"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div id="my-editormd" class="col-sm-10" style="margin-top: 15px;">
+					<textarea id="my-editormd-markdown-doc"
+						name="my-editormd-markdown-doc" style="display: none;"></textarea>
+					<!-- 注意：name属性的值-->
+					<textarea id="my-editormd-html-code" name="my-editormd-html-code"
+						style="display: none;"></textarea>
+				</div>
+			</div>
+		</form>
+	</div>
+	 <!-- 模态框（Modal） -->
+	<div class="modal fade" id="releaseModal" tabindex="-1" role="dialog"
+		aria-labelledby="releaseLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="releaseLabel">发布文章</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal__content">
+                  <div class="form-entry flex form-tag-box">
+                    <label class="form-entry__label">文章标签：</label>
+                    <div class="form-entry__field">
+                      <div class="tag__box">
+                        <input type="hidden" name="tags">
+                        <div class="flex-box">
+                          <div id="tagList" class="tag__item-list">
+                            <button class="tag__btn-tag">
+                              <svg viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path
+                                  d="M512 938.816C276.288 938.816 85.184 747.754667 85.184 512 85.184 276.288 276.288 85.184 512 85.184c235.733333 0 426.816 191.104 426.816 426.816 0 235.754667-191.082667 426.816-426.816 426.816z m0-85.354667c188.544 0 341.461333-152.853333 341.461333-341.461333 0-188.565333-152.917333-341.44-341.461333-341.44-188.586667 0-341.461333 152.874667-341.461333 341.44 0 188.608 152.874667 341.461333 341.461333 341.461333z m-42.709333-384.149333v-128.042667a42.688 42.688 0 0 1 85.376 0v128.042667h128.064a42.709333 42.709333 0 0 1 0 85.376H554.666667v128.042667a42.666667 42.666667 0 0 1-85.376 0v-128.042667h-128.021334a42.688 42.688 0 0 1 0-85.376h128.021334z"></path></svg>
+                              添加标签
+                            </button>
+                          </div>
+                        </div>
+                        <p class="notice-txt">最多添加5个标签</p>
+                        <!---->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-entry flex form-tag-box">
+                    <label class="form-entry__label">个人分类：</label>
+                    <div class="form-entry__field">
+                      <div class="tag__box">
+                        <input type="hidden" name="categories">
+                        <div class="flex-box">
+                          <div id="tagList" class="tag__item-list">
+                            <button class="tag__btn-tag">
+                              <svg viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path
+                                  d="M512 938.816C276.288 938.816 85.184 747.754667 85.184 512 85.184 276.288 276.288 85.184 512 85.184c235.733333 0 426.816 191.104 426.816 426.816 0 235.754667-191.082667 426.816-426.816 426.816z m0-85.354667c188.544 0 341.461333-152.853333 341.461333-341.461333 0-188.565333-152.917333-341.44-341.461333-341.44-188.586667 0-341.461333 152.874667-341.461333 341.44 0 188.608 152.874667 341.461333 341.461333 341.461333z m-42.709333-384.149333v-128.042667a42.688 42.688 0 0 1 85.376 0v128.042667h128.064a42.709333 42.709333 0 0 1 0 85.376H554.666667v128.042667a42.666667 42.666667 0 0 1-85.376 0v-128.042667h-128.021334a42.688 42.688 0 0 1 0-85.376h128.021334z"></path></svg>
+                              添加新分类
+                            </button>
+                          </div>
+                        </div>
+                        <p class="notice-txt"></p>
+                        <div class="tag__options-list">
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk" value="Java多线程">
+                              <i for="chk01" class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">Java多线程</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk" value="工具做成">
+                              <i for="chk01" class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">工具做成</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk" value="Java">
+                              <i for="chk01" class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">Java</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk" value="java内部类">
+                              <i for="chk01" class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">java内部类</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk" value="java基础">
+                              <i for="chk01" class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">java基础</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk"
+                              value="synchronize"> <i for="chk01"
+                              class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">synchronize</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk"
+                              value="bootstrap table"> <i for="chk01"
+                              class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">bootstrap table</span></label>
+                          </div>
+                          <div class="tag__option-box">
+                            <label class="tag__option-label"><input
+                              type="checkbox" class="tag__option-chk" value="editable">
+                              <i for="chk01" class="tag__option-icon"><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 1024 1024" class="icon">
+                                  <path
+                                    d="M768 0H256C115.2 0 0 115.2 0 256v512c0 140.8 115.2 256 256 256h512c140.8 0 256-115.2 256-256V256c0-140.8-115.2-256-256-256z m17.6 377.6L460.8 728c-9.6 9.6-27.2 14.4-40 14.4-14.4 0-32-3.2-41.6-14.4l-142.4-153.6c-17.6-19.2-17.6-49.6 0-68.8 17.6-19.2 46.4-19.2 64 0l120 128 300.8-324.8c17.6-19.2 46.4-19.2 64 0s17.6 49.6 0 68.8z"
+                                    p-id="2164" fill="#7ed321"
+                                    data-spm-anchor-id="a313x.7781069.0.i4"></path></svg></i> <span
+                              class="spanIsAgree">editable</span></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="inline-box">
+                    <div class="form-entry flex">
+                      <label for="xF9wslpEMmaEmnNp" class="form-entry__label">文章类型：<!----></label>
+                      <div class="form-entry__field">
+                        <select class="textfield" id="xF9wslpEMmaEmnNp"><option
+                            value="0" selected="selected">请选择</option>
+                          <option value="original">原创</option>
+                          <option value="repost">转载</option>
+                          <option value="translated">翻译</option></select>
+                      </div>
+                      <span class="notice">*必填项</span>
+                    </div>
+                    <div class="form-entry flex">
+                      <label for="9McY8XFDnDpz3XNG" class="form-entry__label">博客分类：<!----></label>
+                      <div class="form-entry__field">
+                        <select class="textfield" id="9McY8XFDnDpz3XNG"><option
+                            value="0" selected="selected">选择分类</option>
+                          <option value="28">人工智能</option>
+                          <option value="1">移动开发</option>
+                          <option value="29">物联网</option>
+                          <option value="15">架构</option>
+                          <option value="2">云计算/大数据</option>
+                          <option value="17">互联网</option>
+                          <option value="30">游戏开发</option>
+                          <option value="12">运维</option>
+                          <option value="6">数据库</option>
+                          <option value="14">前端</option>
+                          <option value="31">后端</option>
+                          <option value="16">编程语言</option>
+                          <option value="3">研发管理</option>
+                          <option value="32">安全</option>
+                          <option value="33">程序人生</option>
+                          <option value="34">区块链</option>
+                          <option value="35">音视频开发</option>
+                          <option value="36">资讯</option>
+                          <option value="37">计算机理论与基础</option></select>
+                      </div>
+                      <span class="notice">*必填项</span>
+                    </div>
+                  </div>
+                  <div class="form-entry flex form-entry__field-switch-box">
+                    <label for="g5jWLepsKs7lwiF5" class="form-entry__label">私密文章：<!----></label>
+                    <div class="form-entry__field">
+                      <div class="switch-box">
+                        <input type="checkbox" id="chkIsHasNotify"
+                          class="form-control form-control-sm chk-switch"> <label
+                          for="chkIsHasNotify" class="lab-switch"></label> <span
+                          class="ipt-remark chk-false">公开</span> <span
+                          class="ipt-remark chk-true">已设置成私密</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal__button-bar">
+                  <button class="button">取消</button>
+                  <button class="button">保存为草稿</button>
+                  <button class="button btn-c-blue">发布文章</button>
+                </div>
+					<!-- <form role="form" class="form-inline">
+							  <div class="form-group" class="col-sm-12">
+							    <label for="articlelabel" class="col-sm-4 control-label">文章标签</label>
+							    <div class="col-sm-8">
+								    <input type="text" class="form-control" id="articlelabel" placeholder="请输入类别">
+							    </div>
+							  </div>
+							  <div class="form-group" class="col-sm-12">
+                  <label for="articleclass" class="col-sm-4 control-label">个人分类</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="articleclass" placeholder="请输入标签">
+                  </div>
+                </div>
+                <div class="form-group" class="col-sm-12">
+                  <label for="articletype" class="col-sm-4 control-label">文章类型</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="articletype" placeholder="请输入名称">
+                  </div>
+                </div>
+                <div class="form-group" class="col-sm-12">
+                  <label for="articlesicrt" class="col-sm-4 control-label">私密文章</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="articlesicrt" placeholder="请输入名称">
+                  </div>
+                </div>
+							</form> -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary">提交</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<footer class="footer_wrapper" id="contact">
+		<div id="main_footer">
+			<main_footer_comp></main_footer_comp>
+		</div>
+	</footer>
+</body>
+<link rel="stylesheet"
+	href="${basePath}/vue/component/main_menu/main_menu.css" />
+<script menuUrl="${basePath}/menu"
+	src="${basePath}/vue/component/main_menu/main_menu.js"></script>
+<script type="text/javascript">
+<!--为了让editor.md编辑器完整的显示出来-->
+	var testEditor;
+	var editor_height = $(window).height() - $('header').outerHeight(true) - $('footer').outerHeight(true) - 28;
+	$(function() {
+		testEditor = editormd(
+				"my-editormd",
+				{
+					width : "100%",
+					height : editor_height, 
+					path : '${basePath}/js/plugins/markdown/lib/',
+					theme : "eclipse",
+					previewTheme : "eclipse",
+					editorTheme : "eclipse",
+					/* 				theme : "dark",
+					 previewTheme : "dark",
+					 editorTheme : "pastel-on-dark",  */
+					/* 主题 "default", "3024-day", "3024-night",
+					"ambiance", "ambiance-mobile",
+					"base16-dark", "base16-light", "blackboard",
+					"cobalt",
+					"eclipse", "elegant", "erlang-dark",
+					"lesser-dark",
+					"mbo", "mdn-like", "midnight", "monokai",
+					"neat", "neo", "night",
+					"paraiso-dark", "paraiso-light", "pastel-on-dark",
+					"rubyblue",
+					"solarized",
+					"the-matrix", "tomorrow-night-eighties", "twilight",
+					"vibrant-ink",
+					"xq-dark", "xq-light" */
+					codeFold : true,
+					//syncScrolling : false,
+					saveHTMLToTextarea : true, // 保存 HTML 到 Textarea
+					searchReplace : true,
+					//watch : false,                // 关闭实时预览
+					htmlDecode : "style,script,iframe|on*", // 开启 HTML 标签解析，为了安全性，默认不开启    
+					//toolbar  : false,             //关闭工具栏
+					//previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+					emoji : true,
+					taskList : true,
+					tocm : true, // Using [TOCM]
+					tex : true, // 开启科学公式TeX语言支持，默认关闭
+					flowChart : true, // 开启流程图支持，默认关闭
+					sequenceDiagram : true, // 开启时序/序列图支持，默认关闭,
+					//dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+					//dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+					//dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+					//dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+					//dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+					imageUpload : true,
+					imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
+					imageUploadURL : "${basePath}/writeController/upload/editormdPic?blogArticleRid="
+							+ $("#blogArticleRid").val(),//注意你后端的上传图片服务地址
+					onload : function() {
+					},
+					onSave : function() {
+						$
+								.ajax({
+									type : "post",
+									url : "${basePath}/writeController/saveBlog",
+									data : {
+										md_content : testEditor.getMarkdown(),
+										ht_content : testEditor.getHTML(),
+										title : $('#title').val(),
+										rid : $("#blogArticleRid").val()
+
+									},
+									contentType : "application/x-www-form-urlencoded; charset=utf-8",
+									dataType : "json",
+									success : function(data) {
+										alert(data.message);
+									},
+									error : function() {
+										alert("BB君有点儿慌了");
+									}
+								});
+					},
+					onresize : function(){
+						var header_height = $('header').height();
+						var footer_height = $('footer').height();
+						//alert(header_height + "------" + footer_height);
+						//this.height(300);
+					}
+				});
+		
+		$('#release').on('click', function() {
+		    console.log($('#my-editormd > .editormd-preview').html());
+		});
+		var window_init_height = $(window).height();
+		//testEditor.height(window_init_height - header_height - footer_height - 28);
+		//console.log(testEditor);
+
+		console.log(editor_height+ "------------" +$(window).height()+ "------------" +
+				$('header').outerHeight(true)+ "------------" +$('footer').outerHeight(true));
+    //testEditor.height(editor_height);
+		$(window).resize(function() {
+		      var window_height = $(window).height();
+		      var header_height = $('header').height();
+		      var footer_height = $('footer').height();
+		      
+		      var content = editor_height - header_height - footer_height;
+		      //alert(content);
+		      console.log(testEditor.height());
+		      var editor_height = editor_height + window_height - window_init_height;
+		      console.log( window_init_height + "------------" + window_height + "------------" + editor_height);
+		      testEditor.height(editor_height);
+		      //console.log(testEditor.height());
+		      window_init_height = window_height;
+		});
+	});
+	$('#release').on('click', function() {
+		console.log($('#my-editormd > .editormd-preview').html());
+	});
+	var window_init_height = $(window).height();
+	//testEditor.height(window_init_height - header_height - footer_height - 28);
+	//console.log(testEditor);
+	$(window).resize(function() {
+		  var window_height = $(window).height();
+		  var header_height = $('header').height();
+      var footer_height = $('footer').height();
+      
+      var content = window_height - header_height - footer_height;
+      //alert(content);
+      //testEditor.height(600 + window_height - window_init_height);
+      //console.log(testEditor.height());
+      window_init_height = window_height;
+	})
+</script>
+</html>

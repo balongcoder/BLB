@@ -10,7 +10,7 @@ public interface IWriteService {
 
 	/**
 	 * 
-	 * @Title: saveBlogArticle
+	 * @Title: saveOrUpdateBlogArticle
 	 * @Description: 保存博客
 	 * @param rid
 	 * @param title
@@ -20,7 +20,7 @@ public interface IWriteService {
 	 * @author bahailong
 	 * @date 2018年12月15日 下午4:45:07
 	 */
-	Map<String, Object> saveBlogArticle(String rid, String title, String md_content, String ht_content, UserVo userVo);
+	Map<String, Object> saveOrUpdateBlogArticle(String rid, String title, String md_content, String ht_content, UserVo userVo);
 
 	/**
 	 * 

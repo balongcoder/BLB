@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,7 +90,7 @@ public class BaseServiceImpl <T extends ABaseModel> implements IBaseService<T> {
 			model.setEditUser(model.getCreateUser());
 		}
 		if (((ABaseModel) model).getResourceID() == null) {
-			createRid(model);
+			model.setResourceID(createRid());
 		}
 		String dateStr =  DateUtil.getDateStr(new Date(), "yyyy-MM-dd HHmmssSSS");
  		Date date = DateUtil.getDate(dateStr, "yyyy-MM-dd HHmmssSSS");
@@ -115,13 +116,11 @@ public class BaseServiceImpl <T extends ABaseModel> implements IBaseService<T> {
 				model.setEditUser(model.getCreateUser());
 			}
 			if (((ABaseModel) model).getResourceID() == null) {
-				createRid(model);
+				model.setResourceID(createRid());
  				String dateStr =  DateUtil.getDateStr(new Date(), "yyyy-MM-dd HHmmssSSS");
 				Date date = DateUtil.getDate(dateStr, "yyyy-MM-dd HHmmssSSS");
 				((ABaseModel) model).setCreateTime(date);
 				((ABaseModel) model).setEditTime(date);
-
-
 			}
 		}
 		LOG.info("end build " + modelList.get(0).getClass().getName());
@@ -423,27 +422,13 @@ public class BaseServiceImpl <T extends ABaseModel> implements IBaseService<T> {
 	}
 	
 	/**
-	 * @Title createRid
-	 * @Description 构建RID
-	 * @param backlog 待办事项
-	 * @return   void
-	 * @author bahailong
-	 * @data 2018年10月17日下午4:08:50
+	 * 创建业务主键
+	 * @return 返回业务主键
 	 */
-	public void createRid(ABaseModel model) {
-		Random r = new Random();
-		double d = r.nextDouble();
-		String randomId = String.valueOf(d);
-		if (randomId.length() > 11)
-			randomId = randomId.substring(2, 11);
-		else
-			randomId = randomId.substring(2);
-		String resourceID = model.getClass().getSimpleName()
-				+ DateUtil.getDateStr(new Date(), "yyyyMMddHHmmssSSS") + randomId;
-		model.setResourceID(resourceID);
-			String dateStr =  DateUtil.getDateStr(new Date(), "yyyy-MM-dd HHmmssSSS");
-		Date date = DateUtil.getDate(dateStr, "yyyy-MM-dd HHmmssSSS");
-		model.setCreateTime(date);
-		model.setEditTime(date);
+	@Override
+	public String createRid() {
+		UUID uuid =UUID.randomUUID();   
+        // 去掉"-"符号
+        return uuid.toString().replaceAll("-", ""); 
 	}
 }

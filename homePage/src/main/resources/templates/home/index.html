@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<title>BLB</title>
+<link rel="stylesheet"
+  href="${basePath}/css/plugins/markdown/css/style.css" />
+<link rel="stylesheet"
+  href="${basePath}/css/plugins/markdown/css/editormd.css" />
+<link rel="stylesheet"
+  href="${basePath}/css/plugins/bootstrap/css/bootstrap.css" />
+
+<script src="${basePath}/js/jquery-3.3.1.js"></script>
+<script src="${basePath}/js/plugins/markdown/js/editormd.js"></script>
+<script src="${basePath}/js/plugins/bootstrap/js/bootstrap.js"></script>
+<script src="${basePath}/vue/vue-resource.js"></script>
+<script src="${basePath}/vue/vue.js"></script>
+<style>
+#submit_button {
+  display: block;
+  margin-left: 42%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.input {
+  display: block;
+  margin-left: 20%;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  overflow: none;
+}
+ul {
+  text-align:center;
+  list-style-type:none;
+}
+ul li {
+  display:inline;
+  list-style-type:none;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+#main_menu {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+</style>
+</head>
+<body>
+  <!--Header_section-->
+  <header id="header_wrapper">
+    <div id="main_menu">
+     <main_menu_comp :menu="menu"></main_menu_comp>
+    </div> 
+  </header>
+  <div id = "articleMenu">
+    
+  </div>
+  <footer class="footer_wrapper" id="contact">
+    <div id="main_footer">
+      <main_footer_comp></main_footer_comp>
+    </div>
+  </footer>
+</body>
+<link rel="stylesheet" href="${basePath}/vue/component/main_menu/main_menu.css" />
+<script src="${basePath}/vue/component/main_menu/main_menu.js"></script>
+<script type="text/javascript">
+  
+</script>
+</html>

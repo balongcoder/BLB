@@ -26,7 +26,7 @@
 			<version>${junit-version}</version> <scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>com.blb</groupId>
-			<artifactId>blb-write-controller</artifactId>
+			<artifactId>blb-write-api</artifactId>
 			<version>${blb-write-version}</version>
 		</dependency>
 		<dependency>
@@ -83,8 +83,6 @@
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
-				<!-- <executions> <execution> <goals> <goal>repackage</goal> </goals> 
-					</execution> </executions> -->
 			</plugin>
 		</plugins>
 		<finalName>blb-write-web</finalName>
