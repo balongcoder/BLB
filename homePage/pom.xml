@@ -16,6 +16,7 @@
 	</parent>
 	<properties>
 	  <blb-base-version>master</blb-base-version>
+	  <blb-authority-version>master</blb-authority-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -29,6 +30,11 @@
       <artifactId>blb-base</artifactId>
       <version>${blb-base-version}</version>
 		</dependency>
+<!-- 		<dependency>
+		  <groupId>com.blb</groupId>
+		  <artifactId>blb-authority</artifactId>
+		  <version>${blb-authority-version}</version>
+    </dependency> -->
 		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
 			<version>${junit-version}</version> <scope>test</scope> </dependency> -->
 		<dependency>

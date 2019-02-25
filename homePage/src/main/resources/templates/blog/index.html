@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8" />
 <title>博客一览</title>
-<title>写博客</title>
 <link rel="stylesheet"
 	href="${basePath}/css/plugins/markdown/css/style.css" />
 <link rel="stylesheet"
@@ -77,11 +76,14 @@ ul li {
 			
 		</div>
 	</div>
-	<div class="sidebar" style="width: 320px;">
+	<div class="sidebar" style="width: 0px;">
 		目录
 		<div id="catalog">
 			<catalog :children="items.children" :name="items.name" :href="items.href"></catalog>
 		</div>
+	</div>
+	<div id="back_to_top">
+	   <back_to_top></back_to_top>
 	</div>
 	<footer class="footer_wrapper" id="contact">
 		<div id="main_footer">

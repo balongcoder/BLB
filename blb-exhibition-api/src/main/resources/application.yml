@@ -5,12 +5,12 @@ server:
      mime-types: application/x-font-woff,application/x-font-woff2,application/x-font-truetype,image/svg+xml,application/x-font-opentype,application/vnd.ms-fontobject
   
 spring:
-  freemarker:
-    suffix: .ftl
-    enableed: true
-    template-loader-path: classpath:/templates/
-    charset: UTF-8
-    request-context-attribute: request
+#  freemarker:
+#    suffix: .ftl
+#    enableed: true
+#    template-loader-path: classpath:/templates/
+#    charset: UTF-8
+#    request-context-attribute: request
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/blb?useSSL=false
     username: root

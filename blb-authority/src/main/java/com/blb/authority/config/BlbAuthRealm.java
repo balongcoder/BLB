@@ -1,4 +1,4 @@
-package com.blb.authority;
+package com.blb.authority.config;
 
 import java.util.HashSet;
 import java.util.Set;

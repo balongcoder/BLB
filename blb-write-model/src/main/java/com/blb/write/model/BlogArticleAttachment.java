@@ -2,10 +2,18 @@ package com.blb.write.model;
 
 import com.blb.base.model.ABaseModel;
 
+/**
+ * 
+ * @ClassName: BlogArticleAttachment
+ * @Description: 文章附件图片文件
+ * @author bahailong
+ * @date 2019年1月28日 下午5:48:19
+ *
+ */
 public class BlogArticleAttachment extends ABaseModel {
 
 	/**
-	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 * @Fields serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	

@@ -16,9 +16,6 @@ Vue.component('main_menu_comp', {
 		     '</li>' +
 		   '</ul>' +
 		  '</div>' +
-		  '<div class="back-to-top" onclick="window.scroll(0,0);">' +
-			'<i class="fa fa-arrow-up"></i>' +
-		  '</div>' +
 	  '</div>',
     props: ['menu']
 })
@@ -88,22 +85,23 @@ function initMainMenu(){
 	});
 	
 	//首先获取导航栏距离浏览器顶部的高度
-	var top = $('header').offset().top;
+	var top = $('#header_wrapper').offset().top;
 	//开始监控滚动栏scroll
 	$(document).scroll(function(){
 		//获取当前滚动栏scroll的高度并赋值
 		var scrTop = $(window).scrollTop();
 		//开始判断如果导航栏距离顶部的高度等于当前滚动栏的高度则开启悬浮
-		if(scrTop > top){
-			$('header').css({'position':'fixed','top':'0','width':'100%'});
-		}else{//否则清空悬浮
-			$('header').css({'position':'','top':''});
-		}
-		
-		if(scrTop > 0){
-			$('.back-to-top').addClass('back-to-top-on');
-		} else {
-			$('.back-to-top').removeClass('back-to-top-on');
+//		if(scrTop > top){
+//			$('#header_wrapper').css({'position':'fixed','top':'0','width':'100%'});
+//		}else{//否则清空悬浮
+//			$('#header_wrapper').css({'position':'','top':'','width':'100%'});
+//		}
+		if($('.back-to-top')){
+			if(scrTop > 0){
+				$('.back-to-top').addClass('back-to-top-on');
+			} else {
+				$('.back-to-top').removeClass('back-to-top-on');
+			}
 		}
 	})
 	return mainmenuTemp;
@@ -132,5 +130,20 @@ function initFooter(){
 
 var mainFooter = initFooter();
 
-/** 右下角固定栏 **/
+/** 返回顶点 **/
+Vue.component('back_to_top', {
+    template: '<div class="back-to-top" onclick="window.scroll(0,0);">' +
+    '<i class="glyphicon glyphicon-plane"></i>' +
+    '</div>'
+})
 
+function initBackToTop(){
+	if($('#back_to_top').length == 0){
+		return null;
+	}
+	return new Vue({
+		el:'#back_to_top'
+	});
+}
+
+var backtoTop = initBackToTop();

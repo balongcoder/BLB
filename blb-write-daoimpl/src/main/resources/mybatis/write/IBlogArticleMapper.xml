@@ -15,6 +15,7 @@
 		<result property="title" column="title" />
 		<result property="md_content" column="md_content" />
 		<result property="ht_content" column="ht_content" />
+		<result property="summary" column="summary" />
 	</resultMap>
 	
 	<insert id="insert" parameterType="com.blb.write.model.BlogArticle">
@@ -24,20 +25,20 @@
 		</selectKey>
 		insert into
 		BlogArticle(version,isdelete,createTime,editTime,createUser,editUser,resourceID,
-		title,md_content,ht_content)
+		title,md_content,ht_content,summary)
 		values(0,0,#{createTime},#{editTime},#{createUser},#{editUser},#{resourceID},
-		#{title},#{md_content},#{ht_content})
+		#{title},#{md_content},#{ht_content},#{summary})
 	</insert>
 	<insert id="insertBatch" parameterType="arrayList"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into
 		BlogArticle(version,isdelete,createTime,editTime,createUser,editUser,resourceID,
-		title,md_content,ht_content)
+		title,md_content,ht_content,summary)
 		<foreach collection="list" item="item" index="index"
 			separator="union all">
 			select
 			0,0,#{item.createTime},#{item.editTime},#{item.createUser},#{item.editUser},#{item.resourceID},
-			#{item.title},#{item.md_content},#{item.ht_content}
+			#{item.title},#{item.md_content},#{item.ht_content},#{summary}
 			from dual
 		</foreach>
 	</insert>
@@ -53,6 +54,7 @@
 			<if test="title != null">title=#{title},</if>
 			<if test="md_content != null">md_content=#{md_content},</if>
 			<if test="ht_content != null">ht_content=#{ht_content},</if>
+			<if test="summary != null">summary=#{summary},</if>
 		</set>
 		<where>
 			<if test="id != null">
@@ -73,6 +75,7 @@
 				<if test="item.title != null">title=#{item.title},</if>
 				<if test="item.md_content != null">md_content=#{item.md_content},</if>
 				<if test="item.ht_content != null">ht_content=#{item.ht_content},</if>
+				<if test="item.summary != null">summary=#{item.summary,</if>
 			</set>
 			<where>
 				<if test="item.id != null">

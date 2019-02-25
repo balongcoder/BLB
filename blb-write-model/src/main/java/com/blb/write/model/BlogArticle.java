@@ -1,5 +1,7 @@
 package com.blb.write.model;
 
+import org.apache.ibatis.reflection.wrapper.BaseWrapper;
+
 import com.blb.base.model.ABaseModel;
 
 public class BlogArticle extends ABaseModel {
@@ -22,6 +24,12 @@ public class BlogArticle extends ABaseModel {
 	 */
 	private String ht_content;
 	
+	/**
+	 * 内容概要
+	 */
+	private String summary;
+	
+	
 	public String getTitle() {
 		return title;
 	}
@@ -39,5 +47,22 @@ public class BlogArticle extends ABaseModel {
 	}
 	public void setHt_content(String ht_content) {
 		this.ht_content = ht_content;
+		setSummary();
+	}
+	private void setSummary(){
+		int p = this.ht_content.indexOf("</p>") + 4;
+		
+		if(p <= 3) {
+			p = this.ht_content.indexOf("</");
+			if(p == -1) {
+				p = this.ht_content.length();
+			} else {
+				String temp = this.ht_content.substring(p, this.ht_content.length());
+				p += (temp.indexOf(">") + 1);
+			}
+		}
+		
+		this.summary = this.ht_content.substring(0, p);
+		
 	}
 }

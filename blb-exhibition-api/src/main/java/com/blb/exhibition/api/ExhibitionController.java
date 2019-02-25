@@ -1,5 +1,6 @@
 package com.blb.exhibition.api;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,5 +40,21 @@ public class ExhibitionController {
 	@ResponseBody
 	public Map<String, Object> getArticle(@PathVariable("bArticleRid") String blogArticleRid, HttpServletRequest request){
 		return exhibitionService.getArticle(blogArticleRid);
+	}
+	
+	/**
+	 * 
+	 * @Title: preview
+	 * @Description: 首页预览
+	 * @param pageNum
+	 * @param request
+	 * @return  content
+	 * @author bahailong
+	 * @date 2019年1月5日 下午1:30:54
+	 */
+	@RequestMapping("/preview/{pageNum}")
+	@ResponseBody
+	public List<Map<String, Object>> preview(@PathVariable("pageNum") int pageNum, HttpServletRequest request){
+		return exhibitionService.getPreviewArticle(pageNum);
 	}
 }

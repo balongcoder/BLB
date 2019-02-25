@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>博客一览</title>
+<link rel="stylesheet"
+  href="${basePath}/css/plugins/bootstrap/css/bootstrap.css" />
+
+<script src="${basePath}/js/jquery-3.3.1.js"></script>
+<script src="${basePath}/js/plugins/bootstrap/js/bootstrap.js"></script>
+<script src="${basePath}/vue/vue.js"></script>
+<script src="${basePath}/vue/vue-resource.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                 <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="login_register.openLoginModal()">Log in</a>
+                 <a class="btn big-register" data-toggle="modal" href="javascript:void(0)" onclick="login_register.openRegisterModal()">Register</a></div>
+            <div class="col-sm-4"></div>
+        </div>
+		    <div id="login_register">
+		      <login_register_model :modelloginurl="loginurl" :modelregisterurl="registerurl" :modelreturnurl="returnurl" @showloginform="showLoginForm" @showregisterform="showRegisterForm"></login_register_model>
+		    </div>
+    </div>
+</body>
+<link rel="stylesheet" href="${basePath}/vue/component/login/login.css" />
+<script src="${basePath}/vue/component/login/login.js"></script>
+
+</html>
